@@ -3,293 +3,445 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>lari__drigues — achadinhos</title>
+<title>PixelCitou &mdash; memes de dados, Excel e automação</title>
+<meta name="description" content="Memes pixelados sobre análise de dados, Excel e automação. Modo sobrevivência.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 <style>
   :root{
-    --blush: #F6E7DF;
-    --cream: #FFF9F4;
-    --ink: #3A2420;
-    --ink-soft: #6B4F49;
-    --berry: #B8285A;
-    --berry-deep: #921F47;
-    --gold: #C79A3D;
-    --line: rgba(58,36,32,0.12);
+    --bg-deep:#1a1a2e;
+    --bg-panel:#2b2b3d;
+    --grass:#5d8a3a;
+    --grass-dark:#3f6427;
+    --dirt:#7a5230;
+    --dirt-dark:#4a3220;
+    --stone:#9a9a9a;
+    --stone-dark:#5e5e5e;
+    --diamond:#4aeddc;
+    --diamond-dark:#1f9c8f;
+    --gold:#ffd700;
+    --creeper:#4c9a2a;
+    --creeper-dark:#0e5c1e;
+    --black:#161616;
+    --white:#f0f0f0;
+    --emerald:#17dd62;
+    --emerald-dark:#0c8a3c;
+    --lava:#ff6a1a;
+    --lava-dark:#a12e00;
+    --wood:#8a5a32;
+    --iron:#cfcfcf;
+    --iron-dark:#8f8f8f;
+    --purple:#6a1b9a;
+    --purple-dark:#3a0d55;
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
+
+  *{ box-sizing:border-box; image-rendering:pixelated; }
+
+  html{ scroll-behavior:smooth; }
+
   body{
-    background: var(--blush);
-    background-image:
-      radial-gradient(circle at 15% 8%, rgba(199,154,61,0.14), transparent 40%),
-      radial-gradient(circle at 85% 92%, rgba(184,40,90,0.10), transparent 45%);
-    color: var(--ink);
-    font-family: 'Manrope', sans-serif;
-    min-height: 100vh;
-    display:flex;
-    justify-content:center;
-    padding: 48px 18px 60px;
-  }
-  .page{
-    width:100%;
-    max-width: 440px;
+    margin:0;
+    min-height:100vh;
+    background:
+      linear-gradient(var(--bg-deep), var(--bg-deep)),
+      repeating-linear-gradient(0deg, #232338 0 24px, #1f1f30 24px 48px);
+    font-family:'VT323', monospace;
+    color:var(--white);
   }
 
-  /* ---- Masthead ---- */
-  .masthead{
-    text-align:center;
-    margin-bottom: 28px;
-  }
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--berry-deep);
-    margin-bottom: 10px;
-  }
-  .avatar{
-    width: 92px; height: 92px;
-    margin: 0 auto 16px;
-    border-radius: 50%;
-    background: linear-gradient(155deg, var(--cream), var(--blush));
-    border: 2.5px solid var(--gold);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Fraunces', serif;
-    font-size: 34px;
-    font-weight: 600;
-    color: var(--berry-deep);
-    box-shadow: 0 6px 18px rgba(58,36,32,0.15), inset 0 0 0 4px var(--cream);
-  }
-  h1{
-    font-family:'Fraunces', serif;
-    font-weight: 600;
-    font-size: 34px;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-  }
-  h1 em{
-    font-style: italic;
-    font-weight: 500;
-    color: var(--berry);
-  }
-  .tagline{
-    margin-top: 8px;
-    font-size: 14px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-  }
+  a{ color:inherit; }
 
-  /* ---- Swatch strip: signature element ---- */
-  .swatch-strip{
-    display:flex;
-    justify-content:center;
-    gap: 10px;
-    margin: 22px 0 30px;
-  }
-  .swatch-strip span{
-    width: 15px; height: 15px;
-    border-radius: 50%;
-    display:inline-block;
-    border: 1.5px solid rgba(255,255,255,0.7);
-    box-shadow: 0 2px 5px rgba(58,36,32,0.18);
-  }
-  .swatch-strip span:nth-child(1){ background:#E8B4A0; }
-  .swatch-strip span:nth-child(2){ background:#C2185B; }
-  .swatch-strip span:nth-child(3){ background:#C79A3D; }
-  .swatch-strip span:nth-child(4){ background:#7A4B3A; }
-  .swatch-strip span:nth-child(5){ background:#F3D4C6; }
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 16px; }
 
-  /* ---- Link cards styled as product tags ---- */
-  .links{
-    display:flex;
-    flex-direction:column;
-    gap: 14px;
+  /* NAV */
+  nav.topbar{
+    background:var(--dirt);
+    border-bottom:5px solid var(--dirt-dark);
+    box-shadow:0 4px 0 rgba(0,0,0,0.35);
   }
-  .card{
-    position:relative;
+  nav.topbar .wrap{
     display:flex;
     align-items:center;
-    gap: 14px;
-    background: var(--cream);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 16px 18px;
-    text-decoration:none;
-    color: var(--ink);
-    box-shadow: 0 3px 10px rgba(58,36,32,0.06);
-    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    justify-content:space-between;
+    padding-top:12px;
+    padding-bottom:12px;
   }
-  .card:hover, .card:focus-visible{
-    transform: translateY(-3px);
-    box-shadow: 0 10px 22px rgba(58,36,32,0.16);
-    border-color: var(--gold);
-    outline: none;
+  .logo{
+    font-family:'Press Start 2P', monospace;
+    font-size:14px;
+    color:var(--gold);
+    text-shadow:2px 2px 0 var(--black);
+    letter-spacing:1px;
   }
-  .card:focus-visible{
-    outline: 2px solid var(--berry);
-    outline-offset: 2px;
+  .logo span{ color:var(--diamond); }
+  .domain-pill{
+    font-family:'VT323', monospace;
+    font-size:18px;
+    background:var(--black);
+    border:3px solid var(--stone);
+    padding:4px 12px;
+    box-shadow:inset 2px 2px 0 rgba(255,255,255,0.15);
   }
-  .dot{
-    width: 12px; height: 12px;
-    min-width:12px;
-    border-radius: 50%;
-    box-shadow: 0 0 0 3px rgba(255,255,255,0.6);
-  }
-  .card-body{ flex: 1; min-width:0; }
-  .card-label{
-    font-family:'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: 3px;
-  }
-  .card-title{
-    font-family:'Fraunces', serif;
-    font-size: 18px;
-    font-weight: 500;
-  }
-  .arrow{
-    font-size: 18px;
-    color: var(--gold);
-    transition: transform 0.18s ease;
-  }
-  .card:hover .arrow{ transform: translateX(3px); }
 
-  .c1 .dot{ background:#C2185B; }
-  .c2 .dot{ background:#C79A3D; }
-  .c3 .dot{ background:#7A4B3A; }
-  .c4 .dot{ background:#E8B4A0; }
-  .c5 .dot{ background:#3A2420; }
+  /* HERO */
+  header.hero{ text-align:center; padding:56px 16px 30px; }
 
-  /* ---- CTA highlight ---- */
-  .cta{
-    margin-top: 18px;
-    background: linear-gradient(135deg, var(--berry), var(--berry-deep));
-    color: #fff;
-    border: none;
+  .banner{
+    display:inline-block;
+    background:var(--dirt);
+    border:6px solid var(--dirt-dark);
+    box-shadow:
+      inset 4px 4px 0 rgba(255,255,255,0.15),
+      inset -4px -4px 0 rgba(0,0,0,0.35),
+      0 8px 0 rgba(0,0,0,0.4);
+    padding:20px 30px;
+    transform:rotate(-0.6deg);
   }
-  .cta .card-label{ color: rgba(255,255,255,0.75); }
-  .cta .card-title{ color: #fff; }
-  .cta .dot{ background:#fff; }
-  .cta .arrow{ color:#fff; }
-  .cta:hover{ box-shadow: 0 12px 26px rgba(184,40,90,0.35); }
 
-  /* ---- Footer ---- */
-  footer{
-    margin-top: 38px;
-    text-align:center;
+  h1{
+    font-family:'Press Start 2P', monospace;
+    font-size:clamp(15px, 3.4vw, 28px);
+    color:var(--gold);
+    text-shadow:3px 3px 0 var(--black);
+    margin:0 0 12px;
+    letter-spacing:1px;
+    line-height:1.7;
   }
-  .socials{
+
+  .subtitle{
+    font-size:22px;
+    color:var(--diamond);
+    text-shadow:2px 2px 0 var(--black);
+    margin:0;
+  }
+
+  .grasstrip{
+    height:14px;
+    margin:26px auto 0;
+    max-width:600px;
+    background:repeating-linear-gradient(90deg, var(--grass) 0 14px, var(--grass-dark) 14px 28px);
+    border-top:4px solid var(--grass-dark);
+  }
+
+  /* GRID */
+  section.grid-section{ padding:44px 16px 20px; }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:26px;
+  }
+
+  .card{
+    position:relative;
+    background:var(--bg-panel);
+    border:5px solid var(--stone-dark);
+    box-shadow:
+      inset 3px 3px 0 rgba(255,255,255,0.10),
+      inset -3px -3px 0 rgba(0,0,0,0.45),
+      0 6px 0 rgba(0,0,0,0.5);
+    padding:18px 16px 20px;
+    transition:transform 0.15s ease;
+  }
+  .card:hover{ transform:translateY(-6px); }
+  .card:hover .icon-frame{ animation:shake 0.4s ease; }
+
+  @keyframes shake{
+    0%,100%{ transform:rotate(0deg); }
+    25%{ transform:rotate(-3deg); }
+    75%{ transform:rotate(3deg); }
+  }
+
+  .tag{
+    font-family:'Press Start 2P', monospace;
+    font-size:9px;
+    color:var(--black);
+    background:var(--gold);
+    display:inline-block;
+    padding:4px 8px;
+    margin-bottom:12px;
+    box-shadow:2px 2px 0 rgba(0,0,0,0.5);
+  }
+
+  .icon-frame{
+    width:112px;
+    height:112px;
+    margin:0 auto 16px;
+    background:var(--black);
+    border:4px solid var(--stone);
+    box-shadow:
+      inset 2px 2px 0 rgba(255,255,255,0.2),
+      inset -2px -2px 0 rgba(0,0,0,0.5);
     display:flex;
+    align-items:center;
     justify-content:center;
-    gap: 22px;
-    margin-bottom: 14px;
-  }
-  .socials a{
-    color: var(--ink-soft);
-    text-decoration:none;
-    font-family:'IBM Plex Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    border-bottom: 1px solid transparent;
-    transition: color 0.15s ease, border-color 0.15s ease;
-  }
-  .socials a:hover{
-    color: var(--berry);
-    border-color: var(--berry);
-  }
-  .note{
-    font-size: 11px;
-    color: var(--ink-soft);
-    opacity: 0.7;
   }
 
-  @media (prefers-reduced-motion: reduce){
-    .card, .arrow{ transition: none; }
+  .pixel-grid{
+    display:grid;
+    grid-template-columns:repeat(8, 12px);
+    grid-template-rows:repeat(8, 12px);
   }
+  .pixel-grid div{ width:12px; height:12px; }
+
+  h2.meme-title{
+    font-family:'Press Start 2P', monospace;
+    font-size:12px;
+    color:var(--diamond);
+    text-align:center;
+    line-height:1.7;
+    margin:0 0 12px;
+    text-shadow:2px 2px 0 var(--black);
+  }
+
+  p.caption{
+    font-size:19px;
+    line-height:1.4;
+    text-align:center;
+    margin:0;
+  }
+
+  /* CTA */
+  section.cta{
+    text-align:center;
+    padding:50px 16px;
+  }
+  .cta-box{
+    display:inline-block;
+    background:var(--stone-dark);
+    border:5px solid var(--black);
+    box-shadow:inset 3px 3px 0 rgba(255,255,255,0.12), 0 6px 0 rgba(0,0,0,0.5);
+    padding:22px 30px;
+  }
+  .cta-box p{ font-size:22px; margin:0 0 16px; }
+  .btn{
+    display:inline-block;
+    font-family:'Press Start 2P', monospace;
+    font-size:11px;
+    background:var(--emerald);
+    color:var(--black);
+    padding:12px 18px;
+    border:3px solid var(--emerald-dark);
+    box-shadow:0 4px 0 var(--emerald-dark);
+    text-decoration:none;
+    cursor:pointer;
+  }
+  .btn:active{ transform:translateY(4px); box-shadow:none; }
+
+  footer{
+    text-align:center;
+    padding:30px 16px 50px;
+    font-size:18px;
+    color:var(--stone);
+    border-top:5px solid var(--dirt-dark);
+  }
+  footer span{ color:var(--emerald); }
 </style>
 </head>
 <body>
-  <div class="page">
 
-    <div class="masthead">
-      <div class="eyebrow">moda · beleza · achadinhos</div>
-      <div class="avatar">LD</div>
-      <h1>lari<em>__</em>drigues</h1>
-      <p class="tagline">os produtos que eu realmente uso, testados<br>antes de chegar até você ✨</p>
-    </div>
-
-    <div class="swatch-strip" aria-hidden="true">
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
-
-    <nav class="links" aria-label="Links de produtos">
-      <a class="card cta" href="#" target="_blank" rel="noopener">
-        <span class="dot"></span>
-        <span class="card-body">
-          <span class="card-label">Favorito do mês</span>
-          <span class="card-title">Meu achadinho da semana</span>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card c1" href="#" target="_blank" rel="noopener">
-        <span class="dot"></span>
-        <span class="card-body">
-          <span class="card-label">Skincare</span>
-          <span class="card-title">Rotina de pele que eu uso</span>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card c2" href="#" target="_blank" rel="noopener">
-        <span class="dot"></span>
-        <span class="card-body">
-          <span class="card-label">Maquiagem</span>
-          <span class="card-title">Base e produtos do dia a dia</span>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card c3" href="#" target="_blank" rel="noopener">
-        <span class="dot"></span>
-        <span class="card-body">
-          <span class="card-label">Moda</span>
-          <span class="card-title">Peças que estão bombando</span>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card c4" href="#" target="_blank" rel="noopener">
-        <span class="dot"></span>
-        <span class="card-body">
-          <span class="card-label">Perfumaria</span>
-          <span class="card-title">Cheirinhos favoritos</span>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card c5" href="#" target="_blank" rel="noopener">
-        <span class="dot"></span>
-        <span class="card-body">
-          <span class="card-label">Contato</span>
-          <span class="card-title">Fale comigo no WhatsApp</span>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-    </nav>
-
-    <footer>
-      <div class="socials">
-        <a href="#" target="_blank" rel="noopener">Instagram</a>
-        <a href="#" target="_blank" rel="noopener">TikTok</a>
-      </div>
-      <p class="note">novos achadinhos toda semana 🤍</p>
-    </footer>
-
+<nav class="topbar">
+  <div class="wrap">
+    <div class="logo">PIXEL<span>CITOU</span></div>
+    <div class="domain-pill">pixelcitou.com.br</div>
   </div>
+</nav>
+
+<header class="hero">
+  <div class="banner">
+    <h1>MEMES PIXELADOS<br>DE DADOS</h1>
+    <p class="subtitle">Excel &bull; Análise &bull; Automação &bull; Modo Sobrevivência</p>
+  </div>
+  <div class="grasstrip"></div>
+</header>
+
+<section class="grid-section">
+  <div class="wrap">
+    <div class="grid">
+
+      <article class="card">
+        <span class="tag">EXCEL</span>
+        <div class="icon-frame"><div class="pixel-grid" data-icon="creeper"></div></div>
+        <h2 class="meme-title">O CREEPER DO PROCV</h2>
+        <p class="caption">Ele se aproxima bem quietinho... até a fórmula estourar em <strong>#REF!</strong> e explodir a planilha inteira.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">DADOS</span>
+        <div class="icon-frame"><div class="pixel-grid" data-icon="diamond"></div></div>
+        <h2 class="meme-title">ACHAR UM DIAMANTE</h2>
+        <p class="caption">Ou seja: achar uma base de dados limpa, sem duplicata e com nome de coluna padronizado.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">ANÁLISE</span>
+        <div class="icon-frame"><div class="pixel-grid" data-icon="pickaxe"></div></div>
+        <h2 class="meme-title">MINERANDO DADOS BRUTOS</h2>
+        <p class="caption">3 dias cavando uma planilha de 50 mil linhas só pra achar 1 insight (1 diamante, basicamente).</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">AUTOMAÇÃO</span>
+        <div class="icon-frame"><div class="pixel-grid" data-icon="emerald"></div></div>
+        <h2 class="meme-title">COMÉRCIO COM O VILARRÃO DAS MACROS</h2>
+        <p class="caption">Você entrega 1 automação, ele leva sua sanidade mental&hellip; e ainda erra o troco.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">EXCEL</span>
+        <div class="icon-frame"><div class="pixel-grid" data-icon="tree"></div></div>
+        <h2 class="meme-title">PLANTEI UMA TABELA DINÂMICA</h2>
+        <p class="caption">Voltei depois de uma semana e virou uma floresta de subtotais que ninguém mais entende.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">AUTOMAÇÃO</span>
+        <div class="icon-frame"><div class="pixel-grid" data-icon="golem"></div></div>
+        <h2 class="meme-title">GOLEM DE FERRO DO PYTHON</h2>
+        <p class="caption">Construído com muito suor pra nunca, jamais, copiar e colar manualmente de novo.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">EXCEL</span>
+        <div class="icon-frame"><div class="pixel-grid" data-icon="lava"></div></div>
+        <h2 class="meme-title">LAVA = EXCEL COM 100 ABAS ABERTAS</h2>
+        <p class="caption">Um clique errado e é tudo picado, escaldante, adeus autosave.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">ANÁLISE</span>
+        <div class="icon-frame"><div class="pixel-grid" data-icon="daynight"></div></div>
+        <h2 class="meme-title">A FÓRMULA QUE FUNCIONA DE MADRUGADA</h2>
+        <p class="caption">Mas quebra assim que o sol nasce e o chefe abre a planilha às 9h.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-box">
+    <p>Achou seu erro de PROCV nessa lista?</p>
+    <button class="btn" onclick="navigator.clipboard && navigator.clipboard.writeText('https://pixelcitou.com.br').then(()=>alert('Link copiado! Manda pro grupo do trampo.'))">COPIAR LINK</button>
+  </div>
+</section>
+
+<footer>
+  Feito 100% em pixel &mdash; sem <span>duplicatas</span>, sem <span>#REF!</span>, sem lag.<br>
+  &copy; <span id="year"></span> pixelcitou.com.br
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const PALETTE = {
+  '.': 'transparent',
+  G: 'var(--creeper)', B: 'var(--creeper-dark)',
+  D: 'var(--diamond)', Dd: 'var(--diamond-dark)',
+  S: 'var(--stone)', W: 'var(--wood)',
+  E: 'var(--emerald)', Ed: 'var(--emerald-dark)',
+  T: 'var(--grass)', Td: 'var(--grass-dark)',
+  I: 'var(--iron)', Id: 'var(--iron-dark)',
+  L: 'var(--lava)', Ld: 'var(--lava-dark)',
+  Y: 'var(--gold)', M: 'var(--purple)', Md: 'var(--purple-dark)'
+};
+
+const ICONS = {
+  creeper: [
+    ['G','G','G','G','G','G','G','G'],
+    ['G','G','G','G','G','G','G','G'],
+    ['G','B','B','G','G','B','B','G'],
+    ['G','B','B','G','G','B','B','G'],
+    ['G','G','G','B','B','G','G','G'],
+    ['G','G','B','B','B','B','G','G'],
+    ['G','G','B','B','B','B','G','G'],
+    ['G','G','B','G','G','B','G','G']
+  ],
+  diamond: [
+    ['.','.','.','D','D','.','.','.'],
+    ['.','.','D','D','D','D','.','.'],
+    ['.','D','D','D','D','D','D','.'],
+    ['D','D','D','D','D','D','D','D'],
+    ['.','Dd','D','D','D','D','Dd','.'],
+    ['.','.','Dd','D','D','Dd','.','.'],
+    ['.','.','.','Dd','Dd','.','.','.'],
+    ['.','.','.','.','.','.','.','.']
+  ],
+  pickaxe: [
+    ['.','.','S','S','S','.','.','.'],
+    ['.','S','S','S','S','S','.','.'],
+    ['S','S','.','.','.','S','S','.'],
+    ['.','.','.','W','.','.','.','.'],
+    ['.','.','.','W','.','.','.','.'],
+    ['.','.','.','W','.','.','.','.'],
+    ['.','.','W','.','.','.','.','.'],
+    ['.','W','.','.','.','.','.','.']
+  ],
+  emerald: [
+    ['.','.','.','E','E','.','.','.'],
+    ['.','.','E','E','E','E','.','.'],
+    ['.','E','E','E','E','E','E','.'],
+    ['E','E','E','E','E','E','E','E'],
+    ['.','Ed','E','E','E','E','Ed','.'],
+    ['.','.','Ed','E','E','Ed','.','.'],
+    ['.','.','.','Ed','Ed','.','.','.'],
+    ['.','.','.','.','.','.','.','.']
+  ],
+  tree: [
+    ['.','.','T','T','T','.','.','.'],
+    ['.','T','T','T','T','T','.','.'],
+    ['T','T','T','T','T','T','T','.'],
+    ['.','T','Td','T','T','Td','.','.'],
+    ['.','.','.','W','.','.','.','.'],
+    ['.','.','.','W','.','.','.','.'],
+    ['.','.','.','W','.','.','.','.'],
+    ['.','.','W','W','W','.','.','.']
+  ],
+  golem: [
+    ['.','.','I','I','I','.','.','.'],
+    ['.','.','I','I','I','.','.','.'],
+    ['.','I','I','I','I','I','.','.'],
+    ['.','I','Id','I','Id','I','.','.'],
+    ['.','I','I','I','I','I','.','.'],
+    ['.','.','I','.','I','.','.','.'],
+    ['.','.','I','.','I','.','.','.'],
+    ['.','.','Id','.','Id','.','.','.']
+  ],
+  lava: [
+    ['L','L','L','L','L','L','L','L'],
+    ['L','Ld','L','L','Ld','L','L','L'],
+    ['L','L','L','Ld','L','L','Ld','L'],
+    ['L','Ld','L','L','L','Ld','L','L'],
+    ['L','L','Ld','L','L','L','L','Ld'],
+    ['L','L','L','L','Ld','L','L','L'],
+    ['L','Ld','L','L','L','Ld','L','L'],
+    ['L','L','L','L','L','L','L','L']
+  ],
+  daynight: [
+    ['Y','Y','.','.','.','.','M','M'],
+    ['Y','Y','Y','.','.','M','M','M'],
+    ['.','Y','Y','Y','M','M','M','.'],
+    ['.','.','Y','Y','M','M','.','.'],
+    ['.','.','Y','Y','M','M','.','.'],
+    ['.','Y','Y','Y','M','M','M','.'],
+    ['Y','Y','Y','.','.','M','M','M'],
+    ['Y','Y','.','.','.','.','M','M']
+  ]
+};
+
+document.querySelectorAll('.pixel-grid').forEach(container => {
+  const key = container.getAttribute('data-icon');
+  const grid = ICONS[key];
+  if(!grid) return;
+  grid.forEach(row => {
+    row.forEach(code => {
+      const cell = document.createElement('div');
+      cell.style.background = PALETTE[code] || 'transparent';
+      container.appendChild(cell);
+    });
+  });
+});
+</script>
+
 </body>
-</html>
+  </html>
