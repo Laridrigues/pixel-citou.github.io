@@ -1,2 +1,1 @@
-# pixel-citou.github.io
-Afiliados.com
+# pixelcitou.com.br
